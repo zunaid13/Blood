@@ -84,6 +84,7 @@ public class sql {
     {
         String sqlQuery = "select * from blood where email = ?";
         String acquiredPass = new String();
+        String backupPass = new String();
         try{
             // step1 load the driver class
             Class.forName(FORNAME);
@@ -95,8 +96,10 @@ public class sql {
             PreparedStatement pStmt = con.prepareStatement(sqlQuery);
             pStmt.setString(1, mySettings.email);
             ResultSet rs = pStmt.executeQuery();
-            while(rs.next())
+            while(rs.next()) {
                 acquiredPass = rs.getString(2);
+                backupPass = rs.getString(3);
+            }
             // step4 drop all the connections
             con.close();
             pStmt.close();
@@ -109,7 +112,8 @@ public class sql {
             throw new RuntimeException(e);
         }
         acquiredPass = EncryptDecrypt(acquiredPass);
-        return mySettings.password.equals(acquiredPass);
+        backupPass = EncryptDecrypt(backupPass);
+        return mySettings.password.equals(acquiredPass) || mySettings.password.equals(backupPass);
     }
 
 }
