@@ -6,6 +6,6 @@ import java.util.Date;
 public class mySettings {
     public static int Width = 1280;
     public static int Height = 720;
-    public static String fullname, password, email;
+    public static String fullname, password, email, division;
     public static LocalDate DOB; // might cause problems with SQL dates
 }

@@ -9,21 +9,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blood.RegisterController">
    <children>
-      <Button layoutX="150.0" layoutY="318.0" mnemonicParsing="false" text="Back" />
-      <Button layoutX="395.0" layoutY="318.0" mnemonicParsing="false" text="Submit" />
-      <TextField layoutX="117.0" layoutY="58.0" />
-      <TextField layoutX="117.0" layoutY="106.0" />
-      <PasswordField layoutX="118.0" layoutY="151.0" />
-      <PasswordField layoutX="117.0" layoutY="208.0" />
-      <ComboBox layoutX="374.0" layoutY="84.0" prefWidth="150.0" promptText="div" />
+      <Button layoutX="150.0" layoutY="318.0" mnemonicParsing="false" onAction="#onBackBC" text="Back" />
+      <Button layoutX="395.0" layoutY="318.0" mnemonicParsing="false" onAction="#onSubmitBC" text="Submit" />
+      <TextField fx:id="fullname" layoutX="117.0" layoutY="58.0" />
+      <TextField fx:id="email" layoutX="117.0" layoutY="106.0" />
+      <PasswordField fx:id="password" layoutX="118.0" layoutY="151.0" />
+      <PasswordField fx:id="recheckPassword" layoutX="117.0" layoutY="208.0" />
+      <ComboBox fx:id="division" layoutX="374.0" layoutY="84.0" prefWidth="150.0" promptText="div" />
       <Text layoutX="54.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fullname" />
       <Text layoutX="54.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email" />
       <Text layoutX="54.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password" />
       <Text layoutX="54.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="repass" />
-      <DatePicker layoutX="362.0" layoutY="188.0" promptText="DOB" />
-      <Label layoutX="130.0" layoutY="278.0" prefHeight="18.0" prefWidth="365.0" textAlignment="CENTER" />
+      <DatePicker fx:id="DOB_datepicker" layoutX="362.0" layoutY="188.0" promptText="DOB" />
+      <Label fx:id="verdict" layoutX="130.0" layoutY="278.0" prefHeight="18.0" prefWidth="365.0" textAlignment="CENTER" />
    </children>
 </AnchorPane>
