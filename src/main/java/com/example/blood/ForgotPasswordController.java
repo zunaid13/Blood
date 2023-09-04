@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class TEMPORARYCONTROLLER {
+public class ForgotPasswordController {
     @FXML
     private TextField email;
     @FXML

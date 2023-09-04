@@ -24,7 +24,7 @@ public class switchMenu {
         Node CallingButton = (Node) event.getSource();
         Stage mystage = (Stage) CallingButton.getScene().getWindow();
         mystage.setResizable(false);
-        FXMLLoader fxmlLoader = new FXMLLoader(BloodDonnor.class.getResource("TEMPORARY.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(BloodDonnor.class.getResource("ForgotPassword.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         mystage.setTitle("OTP page");
         mystage.setScene(scene);
