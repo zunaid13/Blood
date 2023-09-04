@@ -20,6 +20,17 @@ public class switchMenu {
         mystage.centerOnScreen();
         mystage.show();
     }
+    public static void ForgotPasswordMenu(ActionEvent event) throws IOException {
+        Node CallingButton = (Node) event.getSource();
+        Stage mystage = (Stage) CallingButton.getScene().getWindow();
+        mystage.setResizable(false);
+        FXMLLoader fxmlLoader = new FXMLLoader(BloodDonnor.class.getResource("TEMPORARY.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        mystage.setTitle("OTP page");
+        mystage.setScene(scene);
+        mystage.centerOnScreen();
+        mystage.show();
+    }
     public static void LoginMenu(ActionEvent event) throws IOException {
         Node CallingButton = (Node) event.getSource();
         Stage mystage = (Stage) CallingButton.getScene().getWindow();

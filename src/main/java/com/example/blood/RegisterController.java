@@ -72,7 +72,11 @@ public class RegisterController implements Initializable {
             return;
         }
         // check existence of email and if email already exists
-
+        if(!MailService.sendMail(mySettings.email, MailService.WELCOME_SUBJECT, MailService.WELCOME_TEXT))
+        {
+            verdict.setText("Please enter a valid email");
+            return;
+        }
         sql.addUser();
         switchMenu.LoginMenu(event);
     }

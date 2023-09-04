@@ -21,7 +21,7 @@ public class LoginController {
     protected void onExitBC() {
         Platform.exit();
     }
-    @FXML protected void onLoginBC(ActionEvent event) throws IOException {
+    @FXML protected void onLoginBC(ActionEvent event) throws Exception {
         mySettings.email = email.getText();
         mySettings.password = password.getText();
         if(sql.CheckEmailAvailability())
@@ -34,9 +34,15 @@ public class LoginController {
             verdict.setText("Wrong password");
             return;
         }
+        sql.resetOTP();
         switchMenu.MainMenu(event);
     }
     @FXML protected void onRegisterBC(ActionEvent event) throws IOException {
         switchMenu.RegisterMenu(event);
     }
+
+    @FXML protected void onForgotPasswordBC(ActionEvent event) throws IOException {
+        switchMenu.ForgotPasswordMenu(event);
+    }
+
 }

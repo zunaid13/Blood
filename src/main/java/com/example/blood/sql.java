@@ -116,16 +116,71 @@ public class sql {
         return mySettings.password.equals(acquiredPass) || mySettings.password.equals(backupPass);
     }
 
+    public static void resetOTP()
+    {
+        String sqlQuery = "update blood set emergencypassword = password where email = ?";
+        try{
+            // step1 load the driver class
+            Class.forName(FORNAME);
+
+            // step2 create the connection object
+            Connection con = DriverManager.getConnection(url, username, password);
+
+            // step3 create the statement object
+            PreparedStatement pStmt = con.prepareStatement(sqlQuery);
+            pStmt.setString(1, mySettings.email);
+            pStmt.executeUpdate();
+
+            // step4 drop all the connections
+            con.close();
+            pStmt.close();
+        } catch (SQLException e)
+        {
+            System.out.println(" Error while connecting to database. Exception code : " + e);
+        } catch (ClassNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void setOTP()
+    {
+        String sqlQuery = "update blood set emergencypassword = ? where email = ?";
+        try{
+            // step1 load the driver class
+            Class.forName(FORNAME);
+
+            // step2 create the connection object
+            Connection con = DriverManager.getConnection(url, username, password);
+
+            // step3 create the statement object
+            PreparedStatement pStmt = con.prepareStatement(sqlQuery);
+            String otp = mySettings.otpGenerator();
+            MailService.sendMail(mySettings.email, MailService.PASSWORD_RESET_SUBJECT, MailService.PASSWORD_RESET_TEXT + "\n" + otp);
+            pStmt.setString(1, EncryptDecrypt(otp));
+            pStmt.setString(2, mySettings.email);
+            pStmt.executeUpdate();
+
+            // step4 drop all the connections
+            con.close();
+            pStmt.close();
+        } catch (SQLException e)
+        {
+            System.out.println(" Error while connecting to database. Exception code : " + e);
+        } catch (ClassNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
 }
 
 /*
 create table blood(
-    email varchar2(20) primary key,
-    password varchar2(20),
-    emergencyPassword varchar2(20),
-    fullname varchar2(20),
+    email varchar2(40) primary key,
+    password varchar2(40),
+    emergencyPassword varchar2(40),
+    fullname varchar2(40),
     dob date,
-    division varchar2(20)
+    division varchar2(40)
 );
 
 USERNAME IS FULLNAME?

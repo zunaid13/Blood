@@ -5,7 +5,11 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 public class MailService {
-    public static boolean sendMail(String recepient) {
+    public static String WELCOME_SUBJECT = "Welcome to our application";
+    public static String WELCOME_TEXT = "We hope you help others by donating blood";
+    public static String PASSWORD_RESET_SUBJECT = "Password reset";
+    public static String PASSWORD_RESET_TEXT = "Your new password is : ";
+    public static boolean sendMail(String recepient, String subject, String textMessage) {
         System.out.println("Preparing to send");
         Properties properties = new Properties();
 
@@ -23,7 +27,7 @@ public class MailService {
             }
         });
 
-        Message message = prepareMessage(session, myAccountEmail, recepient);
+        Message message = prepareMessage(session, myAccountEmail, recepient, subject, textMessage);
         try{
             Transport.send(message);
             System.out.println("Message sent successfully...");
@@ -34,14 +38,14 @@ public class MailService {
             return false;
         }
     }
-    private static Message prepareMessage(Session session, String myAccountEmail, String recipient)
+    private static Message prepareMessage(Session session, String myAccountEmail, String recipient, String subject, String textMessage)
     {
         try{
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-            message.setSubject("This works?");
-            message.setText("Yoooooooo");
+            message.setSubject(subject);
+            message.setText(textMessage);
             return message;
         } catch (Exception e)
         {
