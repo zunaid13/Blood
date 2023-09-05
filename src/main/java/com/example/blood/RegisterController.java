@@ -47,11 +47,45 @@ public class RegisterController implements Initializable {
             verdict.setText("Fullname too short");
             return;
         }
-        if(mySettings.password.length() < 3)
+        if(mySettings.password.length() < 8)
         {
             verdict.setText("Password too short");
             return;
         }
+
+        boolean small = false, capital = false, num = false, special = false;
+        for(int i = 0 ; i < mySettings.password.length() ; i++)
+        {
+            if(mySettings.password.charAt(i) >= 'a' && mySettings.password.charAt(i) <= 'z')
+                small = true;
+            else if(mySettings.password.charAt(i) >= 'A' && mySettings.password.charAt(i) <= 'Z')
+                capital = true;
+            else if(mySettings.password.charAt(i) >= '0' && mySettings.password.charAt(i) <= '9')
+                num = true;
+            else special = true;
+        }
+        if(small == false)
+        {
+            verdict.setText("Password must have at least one small character");
+            return;
+        }
+        if(capital == false)
+        {
+            verdict.setText("Password must have at least one capital character");
+            return;
+        }
+        if(num == false)
+        {
+            verdict.setText("Password must have at least one number");
+            return;
+        }
+        if(special == false)
+        {
+            verdict.setText("Password must have at least one special character");
+            return;
+        }
+
+
         if(!check.equals(mySettings.password))
         {
             verdict.setText("Password does not match");

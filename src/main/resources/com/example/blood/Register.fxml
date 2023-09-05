@@ -61,9 +61,9 @@
                   </PasswordField>
                   <DatePicker fx:id="DOB_datepicker" layoutX="216.0" layoutY="476.0" prefHeight="50.0" prefWidth="200.0" promptText="Date of Birth'" />
                   <ComboBox fx:id="division" layoutX="451.0" layoutY="476.0" prefHeight="50.0" prefWidth="200.0" promptText="Division" />
-                  <Label fx:id="verdict" layoutX="171.0" layoutY="632.0" prefHeight="59.0" prefWidth="402.0" textAlignment="CENTER">
+                  <Label fx:id="verdict" layoutX="64.0" layoutY="632.0" prefHeight="59.0" prefWidth="593.0" textAlignment="CENTER">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="16.0" />
                      </font>
                   </Label>
                   <Label layoutX="86.0" layoutY="186.0" text="Full Name">
