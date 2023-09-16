@@ -30,7 +30,7 @@ public class RegisterController implements Initializable {
         division.setItems(FXCollections.observableArrayList("Rajshahi", "Rangpur", "Sylhet", "Dhaka", "Khulna", "Barisal", "Chittagong"));
     }
     @FXML protected void onBackBC(ActionEvent event) throws IOException {
-        switchMenu.LoginMenu(event);
+        switchMenu.MenuSwitch(event, switchMenu.loginMenu, "Login");
     }
     @FXML protected void onSubmitBC(ActionEvent event) throws IOException {
         // obtaining info
@@ -112,6 +112,6 @@ public class RegisterController implements Initializable {
             return;
         }
         sql.addUser();
-        switchMenu.LoginMenu(event);
+        switchMenu.MenuSwitch(event, switchMenu.loginMenu, "Login");
     }
 }

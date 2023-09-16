@@ -35,14 +35,14 @@ public class LoginController {
             return;
         }
         sql.resetOTP();
-        switchMenu.MainMenu(event);
+        switchMenu.MenuSwitch(event, switchMenu.mainMenu, "Main Menu");
     }
     @FXML protected void onRegisterBC(ActionEvent event) throws IOException {
-        switchMenu.RegisterMenu(event);
+        switchMenu.MenuSwitch(event, switchMenu.registerMenu, "Register");
     }
 
     @FXML protected void onForgotPasswordBC(ActionEvent event) throws IOException {
-        switchMenu.ForgotPasswordMenu(event);
+        switchMenu.MenuSwitch(event, switchMenu.forgotPasswordMenu, "Recover account");
     }
 
 }

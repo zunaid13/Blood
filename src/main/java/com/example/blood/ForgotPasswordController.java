@@ -11,12 +11,12 @@ public class ForgotPasswordController {
     private TextField email;
     @FXML
     protected void onBackBC(ActionEvent event) throws IOException {
-        switchMenu.LoginMenu(event);
+        switchMenu.MenuSwitch(event, switchMenu.loginMenu, "Login");
     }
 
     @FXML protected void onSubmitBC(ActionEvent event) throws IOException {
         mySettings.email = email.getText();
         sql.setOTP();
-        switchMenu.LoginMenu(event);
+        switchMenu.MenuSwitch(event, switchMenu.loginMenu, "Login");
     }
 }
