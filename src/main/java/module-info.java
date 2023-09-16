@@ -3,6 +3,7 @@ module com.example.blood {
     requires javafx.fxml;
     requires java.sql;
     requires java.mail;
+    requires java.desktop;
 
 
     opens com.example.blood to javafx.fxml;

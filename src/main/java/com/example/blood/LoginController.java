@@ -35,7 +35,10 @@ public class LoginController {
             return;
         }
         sql.resetOTP();
-        switchMenu.MenuSwitch(event, switchMenu.mainMenu, "Main Menu");
+        sql.fetchUser();
+        if(mySettings.division != null)
+            switchMenu.MenuSwitch(event, switchMenu.mainMenu, "Main Menu");
+        // else go to first login thingy
     }
     @FXML protected void onRegisterBC(ActionEvent event) throws IOException {
         switchMenu.MenuSwitch(event, switchMenu.registerMenu, "Register");

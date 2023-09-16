@@ -50,7 +50,7 @@ public class sql {
     }
     public static void addUser()
     {
-        String sqlQuery = "insert into blood values (?, ?, ?, ?, ?, ?)";
+        String sqlQuery = "insert into blood values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
             // step1 load the driver class
             Class.forName(FORNAME);
@@ -66,7 +66,16 @@ public class sql {
             pStmt.setString(3, encryptedPassword);
             pStmt.setString(4, mySettings.fullname);
             pStmt.setDate(5, Date.valueOf(mySettings.DOB));
-            pStmt.setString(6, mySettings.division);
+
+
+            pStmt.setString(6, null);
+            pStmt.setString(7, null);
+            pStmt.setString(8, null);
+            pStmt.setInt(9, 0);
+            pStmt.setString(10, null);
+            pStmt.setString(11, null);
+            pStmt.setString(12, null);
+
             pStmt.executeUpdate();
 
             // step4 drop all the connections
@@ -84,7 +93,6 @@ public class sql {
     {
         String sqlQuery = "select * from blood where email = ?";
         String acquiredPass = new String();
-        String backupPass = new String();
         try{
             // step1 load the driver class
             Class.forName(FORNAME);
@@ -98,7 +106,6 @@ public class sql {
             ResultSet rs = pStmt.executeQuery();
             while(rs.next()) {
                 acquiredPass = rs.getString(2);
-                backupPass = rs.getString(3);
             }
             // step4 drop all the connections
             con.close();
@@ -112,8 +119,46 @@ public class sql {
             throw new RuntimeException(e);
         }
         acquiredPass = EncryptDecrypt(acquiredPass);
-        backupPass = EncryptDecrypt(backupPass);
-        return mySettings.password.equals(acquiredPass) || mySettings.password.equals(backupPass);
+        return mySettings.password.equals(acquiredPass);
+    }
+    public static void fetchUser()
+    {
+        String sqlQuery = "select * from blood where email = ?";
+        try{
+            // step1 load the driver class
+            Class.forName(FORNAME);
+
+            // step2 create the connection object
+            Connection con = DriverManager.getConnection(url, username, password);
+
+            // step3 create the statement object
+            PreparedStatement pStmt = con.prepareStatement(sqlQuery);
+            pStmt.setString(1, mySettings.email);
+            ResultSet rs = pStmt.executeQuery();
+            while(rs.next()) {
+                mySettings.fullname = rs.getString("fullname");
+                mySettings.otp = rs.getString("emergencyPassword");
+                mySettings.DOB = rs.getDate("dob").toLocalDate();
+                mySettings.division = rs.getString("division");
+                mySettings.district = rs.getString("district");
+                mySettings.gender = rs.getString("gender");
+                mySettings.weight = rs.getDouble("weight");
+                mySettings.bloodgroup = rs.getString("bloodgroup");
+                mySettings.rh_factor = rs.getString("rh_factor");
+                mySettings.contact_no = rs.getString("contact_no");
+                mySettings.otp = EncryptDecrypt(mySettings.otp);
+            }
+            // step4 drop all the connections
+            con.close();
+            pStmt.close();
+            rs.close();
+        } catch (SQLException e)
+        {
+            System.out.println(" Error while connecting to database. Exception code : " + e);
+        } catch (ClassNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void resetOTP()
@@ -142,7 +187,7 @@ public class sql {
             throw new RuntimeException(e);
         }
     }
-    public static void setOTP()
+    public static boolean setOTP()
     {
         String sqlQuery = "update blood set emergencypassword = ? where email = ?";
         try{
@@ -155,14 +200,16 @@ public class sql {
             // step3 create the statement object
             PreparedStatement pStmt = con.prepareStatement(sqlQuery);
             String otp = mySettings.otpGenerator();
-            MailService.sendMail(mySettings.email, MailService.PASSWORD_RESET_SUBJECT, MailService.PASSWORD_RESET_TEXT + "\n" + otp);
+            boolean ret = MailService.sendMail(mySettings.email, MailService.PASSWORD_RESET_SUBJECT, MailService.PASSWORD_RESET_TEXT + "\n" + otp);
             pStmt.setString(1, EncryptDecrypt(otp));
             pStmt.setString(2, mySettings.email);
             pStmt.executeUpdate();
+            mySettings.otp = otp;
 
             // step4 drop all the connections
             con.close();
             pStmt.close();
+            return ret;
         } catch (SQLException e)
         {
             System.out.println(" Error while connecting to database. Exception code : " + e);
@@ -170,6 +217,7 @@ public class sql {
         {
             throw new RuntimeException(e);
         }
+        return false;
     }
 }
 
@@ -180,6 +228,17 @@ create table blood(
     emergencyPassword varchar2(40),
     fullname varchar2(40),
     dob date,
+    division varchar2(40),
+    district varchar2(40),
+    gender varchar2(10),
+    weight number,
+    bloodgroup varchar2(5),
+    rh_factor varchar2(4),
+    contact_no varchar2(15)
+);
+
+create table location(
+    district varchar2(40) primary key,
     division varchar2(40)
 );
 
