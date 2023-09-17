@@ -25,6 +25,7 @@ public class ForgotPasswordController {
             verdict.setText("User does not exist");
             return;
         }
+        verdict.setText("Please wait for the email");
         sql.setOTP();
         switchMenu.MenuSwitch(event, switchMenu.EnterOTP, "Account recovery");
     }

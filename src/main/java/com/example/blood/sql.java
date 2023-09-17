@@ -89,6 +89,34 @@ public class sql {
             throw new RuntimeException(e);
         }
     }
+    public static void updatePassword()
+    {
+        String sqlQuery = "update blood set password = ?, emergencypassword = ? where email = ?";
+        try{
+            // step1 load the driver class
+            Class.forName(FORNAME);
+
+            // step2 create the connection object
+            Connection con = DriverManager.getConnection(url, username, password);
+
+            // step3 create the statement object
+            PreparedStatement pStmt = con.prepareStatement(sqlQuery);
+            pStmt.setString(1, EncryptDecrypt(mySettings.password));
+            pStmt.setString(2, EncryptDecrypt(mySettings.password));
+            pStmt.setString(3, mySettings.email);
+            pStmt.executeUpdate();
+            mySettings.otp = mySettings.password;
+            // step4 drop all the connections
+            con.close();
+            pStmt.close();
+        } catch (SQLException e)
+        {
+            System.out.println(" Error while connecting to database. Exception code : " + e);
+        } catch (ClassNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
     public static boolean checkPassword()
     {
         String sqlQuery = "select * from blood where email = ?";
@@ -124,6 +152,7 @@ public class sql {
     public static void fetchUser()
     {
         String sqlQuery = "select * from blood where email = ?";
+        System.out.println("Fetching data");
         try{
             // step1 load the driver class
             Class.forName(FORNAME);

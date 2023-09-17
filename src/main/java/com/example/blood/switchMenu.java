@@ -14,6 +14,7 @@ public class switchMenu {
     public static String loginMenu = "Login.fxml";
     public static String mainMenu = "MainMenu.fxml";
     public static String EnterOTP = "EnterOTP.fxml";
+    public static String UpdatePassword = "UpdatePassword.fxml";
     public static void MenuSwitch(ActionEvent event, String fxmlName, String title) throws IOException {
         Node CallingButton = (Node) event.getSource();
         Stage mystage = (Stage) CallingButton.getScene().getWindow();
