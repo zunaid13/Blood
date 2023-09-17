@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blood.ForgotPasswordController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blood.EnterOTPcontroller">
    <left>
       <AnchorPane prefHeight="720.0" prefWidth="600.0" style="-fx-background-color: FFFFFF;" BorderPane.alignment="CENTER">
          <children>
@@ -24,17 +24,17 @@
    <right>
       <AnchorPane prefHeight="200.0" prefWidth="670.0" style="-fx-background-color: D93A52;" stylesheets="@MenuStyle.css" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="124.0" layoutY="264.0" text="Enter Email">
+            <Label layoutX="124.0" layoutY="264.0" text="Enter OTP">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="email" layoutX="298.0" layoutY="255.0">
+            <TextField fx:id="otpField" layoutX="298.0" layoutY="255.0">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <Button layoutX="322.0" layoutY="334.0" mnemonicParsing="false" onAction="#onSubmitBC" text="Send OTP">
+            <Button layoutX="322.0" layoutY="334.0" mnemonicParsing="false" onAction="#onSubmitBC" text="Confirm">
                <font>
                   <Font size="20.0" />
                </font>
@@ -44,9 +44,9 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Label fx:id="verdict" contentDisplay="CENTER" layoutX="144.0" layoutY="434.0" prefHeight="19.0" prefWidth="394.0" textAlignment="CENTER">
+            <Label fx:id="verdict" alignment="CENTER" contentDisplay="CENTER" layoutX="271.0" layoutY="472.0" prefHeight="14.0" prefWidth="254.0" textAlignment="CENTER">
                <font>
-                  <Font size="17.0" />
+                  <Font size="21.0" />
                </font>
             </Label>
          </children>
