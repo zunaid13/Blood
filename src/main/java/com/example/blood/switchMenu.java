@@ -53,4 +53,31 @@ public class switchMenu {
         mystage.centerOnScreen();
         mystage.show();
     }
+
+    public static void Dashboard(ActionEvent event) throws IOException{
+        Node CallingButton = (Node) event.getSource();
+        Stage mystage = (Stage) CallingButton.getScene().getWindow();
+        mystage.setResizable(false);
+        FXMLLoader fxmlLoader = new FXMLLoader(BloodDonnor.class.getResource("Dashboard.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        mystage.setTitle("Dashboard");
+        mystage.setScene(scene);
+        mystage.centerOnScreen();
+        mystage.show();
+
+    }
+
+    public static void DonorDashboard(ActionEvent event) throws IOException{
+        Node CallingButton = (Node) event.getSource();
+        Stage mystage = (Stage) CallingButton.getScene().getWindow();
+        mystage.setResizable(false);
+        FXMLLoader fxmlLoader = new FXMLLoader(BloodDonnor.class.getResource("DonorDashboard.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        mystage.setTitle("DonorDashboard");
+        mystage.setScene(scene);
+        mystage.centerOnScreen();
+        mystage.show();
+
+    }
+
 }
