@@ -91,10 +91,10 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="fullname" layoutX="239.0" layoutY="179.0" prefHeight="35.0" prefWidth="300.0" />
                   <TextField fx:id="weight" layoutX="239.0" layoutY="283.0" prefHeight="35.0" prefWidth="300.0" />
                   <TextField fx:id="ContactNumber" layoutX="239.0" layoutY="462.0" prefHeight="35.0" prefWidth="300.0" />
                   <Label fx:id="verdict" layoutX="143.0" layoutY="609.0" prefHeight="14.0" prefWidth="438.0" />
+                  <TextField fx:id="fullname" layoutX="302.0" layoutY="184.0" />
 
                   
                </children>

@@ -53,7 +53,7 @@ public class sql {
     }
     public static void addUser()
     {
-        String sqlQuery = "insert into blood values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlQuery = "insert into blood values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
             // step1 load the driver class
             Class.forName(FORNAME);
@@ -79,6 +79,50 @@ public class sql {
             pStmt.setString(11, null);
             pStmt.setString(12, null);
             pStmt.setInt(13, -1);
+            pStmt.setDate(14, null);
+            pStmt.setInt(15, 0);
+            pStmt.executeUpdate();
+
+            // step4 drop all the connections
+            con.close();
+            pStmt.close();
+//            rs.close();
+        } catch (SQLException e)
+        {
+            System.out.println(" Error while connecting to database. Exception code : " + e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void updateUser()
+    {
+        String sqlQuery = "update blood set fullname = ?, dob = ?, division = ?, district = ?, gender = ?, weight = ?, bloodgroup = ?, rh_factor = ?, contact_no = ?, rating = ?, lastDonated = ?, totalDonated = ? where email = ?";
+        try{
+            // step1 load the driver class
+            Class.forName(FORNAME);
+
+            // step2 create the connection object
+            Connection con = DriverManager.getConnection(url, username, password);
+
+            // step3 create the statement object
+            PreparedStatement pStmt = con.prepareStatement(sqlQuery);
+            pStmt.setString(1, mySettings.fullname);
+            pStmt.setDate(2, Date.valueOf(mySettings.DOB));
+            pStmt.setString(3, mySettings.division);
+
+
+            pStmt.setString(4, mySettings.district);
+            pStmt.setString(5, mySettings.gender);
+            pStmt.setDouble(6, mySettings.weight);
+            pStmt.setString(7, mySettings.bloodgroup);
+            pStmt.setString(8, mySettings.rh_factor);
+            pStmt.setString(9, mySettings.contact_no);
+            pStmt.setDouble(10, mySettings.rating);
+            if(mySettings.lastDonated != null)
+                pStmt.setDate(11, Date.valueOf(mySettings.lastDonated));
+            else pStmt.setDate(11, null);
+            pStmt.setInt(12, mySettings.TotalDonated);
+            pStmt.setString(13, mySettings.email);
             pStmt.executeUpdate();
 
             // step4 drop all the connections
@@ -180,6 +224,10 @@ public class sql {
                 mySettings.contact_no = rs.getString("contact_no");
                 mySettings.otp = EncryptDecrypt(mySettings.otp);
                 mySettings.rating = rs.getDouble("rating");
+                if(rs.getDate("lastDonated") != null)
+                    mySettings.lastDonated = rs.getDate("lastDonated").toLocalDate();
+                else mySettings.lastDonated = null;
+                mySettings.TotalDonated = rs.getInt("totalDonated");
             }
             // step4 drop all the connections
             con.close();
@@ -253,24 +301,24 @@ public class sql {
         }
         return false;
     }
-    public static ObservableList<String> getDistricts(String division)
+    public static ArrayList<String> getDistricts(String division)
     {
         System.out.println("Getting districts");
-        ObservableList<String> ret = null;
-        String sqlQuery = "select district from location where division = ?";
+        ArrayList<String> ret = new ArrayList<String>(0);
+        String sqlQuery = "select * from location where division = ?";
         try{
             // step1 load the driver class
             Class.forName(FORNAME);
 
             // step2 create the connection object
             Connection con = DriverManager.getConnection(url, username, password);
-
             // step3 create the statement object
             PreparedStatement pStmt = con.prepareStatement(sqlQuery);
             pStmt.setString(1, division);
             ResultSet rs = pStmt.executeQuery();
             while(rs.next()) {
-                ret.add(rs.getString(1));
+                String temp = rs.getString("district");
+                ret.add(temp);
             }
             // step4 drop all the connections
             con.close();
@@ -283,6 +331,11 @@ public class sql {
         {
             throw new RuntimeException(e);
         }
+        for(int i = 0 ; i < ret.size() ; i++)
+        {
+            System.out.print(ret.get(i) + " ");
+        }
+        System.out.println("");
         return ret;
     }
 }
@@ -301,7 +354,9 @@ create table blood(
     bloodgroup varchar2(5),
     rh_factor varchar2(4),
     contact_no varchar2(15),
-    rating number
+    rating number,
+    lastDonated date,
+    totalDonated int
 );
 
 create table location(

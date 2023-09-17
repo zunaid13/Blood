@@ -37,7 +37,10 @@ public class LoginController {
         sql.resetOTP();
         sql.fetchUser();
         if(mySettings.division != null)
+        {
             switchMenu.MenuSwitch(event, switchMenu.mainMenu, "Main Menu");
+            return;
+        }
         System.out.println("Entering first form");
         switchMenu.MenuSwitch(event, switchMenu.firstForm, "Initial Setup");
     }

@@ -9,7 +9,8 @@ public class mySettings {
     public static int Height = 720;
     public static String fullname, password, email, division, district, gender, bloodgroup, rh_factor, contact_no, otp;
     public static double weight, rating;
-    public static LocalDate DOB; // might cause problems with SQL dates
+    public static int TotalDonated;
+    public static LocalDate DOB, lastDonated; // might cause problems with SQL dates
 
     public static String passwordCheck(String givenPassword)
     {
