@@ -3,12 +3,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.blood.MainMenuController">
    <children>
-      <Button layoutX="284.0" layoutY="301.0" mnemonicParsing="false" text="Logout" />
-      <Button layoutX="218.0" layoutY="242.0" mnemonicParsing="false" text="Learn about blood donation" />
-      <Button layoutX="284.0" layoutY="188.0" mnemonicParsing="false" text="Search donnors" />
-      <Button layoutX="284.0" layoutY="135.0" mnemonicParsing="false" text="View profile" />
+      <Button layoutX="284.0" layoutY="301.0" mnemonicParsing="false" onAction="#onLogoutBC" text="Logout" />
+      <Button layoutX="218.0" layoutY="242.0" mnemonicParsing="false" onAction="#onLearnBC" text="Learn about blood donation" />
+      <Button layoutX="284.0" layoutY="188.0" mnemonicParsing="false" onAction="#onSearchDonnorBC" text="Search donnors" />
+      <Button layoutX="284.0" layoutY="135.0" mnemonicParsing="false" onAction="#onViewProfileBC" text="View profile" />
    </children>
 </AnchorPane>

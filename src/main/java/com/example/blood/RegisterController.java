@@ -11,6 +11,8 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ResourceBundle;
 
 public class RegisterController {
@@ -49,6 +51,11 @@ public class RegisterController {
         if(mySettings.DOB == null)
         {
             verdict.setText("You must select a date of birth");
+            return;
+        }
+        if(Period.between(mySettings.DOB, LocalDate.now()).getYears() < 18)
+        {
+            verdict.setText("You must be atleast 18 years old");
             return;
         }
         if(!sql.CheckEmailAvailability())

@@ -301,6 +301,56 @@ public class sql {
         }
         return false;
     }
+    public static ArrayList<userProfiler> getOtherProfiles()
+    {
+        System.out.println("Getting other profiles");
+        ArrayList<userProfiler> ret = new ArrayList<userProfiler>(0);
+        String sqlQuery = "select * from blood where email != ?";
+        try{
+            // step1 load the driver class
+            Class.forName(FORNAME);
+
+            // step2 create the connection object
+            Connection con = DriverManager.getConnection(url, username, password);
+            // step3 create the statement object
+            PreparedStatement pStmt = con.prepareStatement(sqlQuery);
+            pStmt.setString(1, mySettings.email);
+            ResultSet rs = pStmt.executeQuery();
+            while(rs.next()) {
+                System.out.println("Obtained profile : " + rs.getString("fullname"));
+                userProfiler temp = new userProfiler();
+                temp.email = rs.getString("email");
+                temp.fullname = rs.getString("fullname");
+                temp.otp = rs.getString("emergencyPassword");
+                temp.DOB = rs.getDate("dob").toLocalDate();
+                temp.division = rs.getString("division");
+                temp.district = rs.getString("district");
+                temp.gender = rs.getString("gender");
+                temp.weight = rs.getDouble("weight");
+                temp.bloodgroup = rs.getString("bloodgroup");
+                temp.rh_factor = rs.getString("rh_factor");
+                temp.contact_no = rs.getString("contact_no");
+                temp.otp = EncryptDecrypt(temp.otp);
+                temp.rating = rs.getDouble("rating");
+                if(rs.getDate("lastDonated") != null)
+                    temp.lastDonated = rs.getDate("lastDonated").toLocalDate();
+                else temp.lastDonated = null;
+                temp.TotalDonated = rs.getInt("totalDonated");
+                ret.add(temp);
+            }
+            // step4 drop all the connections
+            con.close();
+            pStmt.close();
+            rs.close();
+        } catch (SQLException e)
+        {
+            System.out.println(" Error while connecting to database. Exception code : " + e);
+        } catch (ClassNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return ret;
+    }
     public static ArrayList<String> getDistricts(String division)
     {
         System.out.println("Getting districts");

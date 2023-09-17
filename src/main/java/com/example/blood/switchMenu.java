@@ -16,6 +16,9 @@ public class switchMenu {
     public static String EnterOTP = "EnterOTP.fxml";
     public static String UpdatePassword = "UpdatePassword.fxml";
     public static String firstForm = "FirstForm.fxml";
+    public static String donnorDashboard = "DonorDashboard.fxml";
+    public static String donnorThumb = "donnorThumbnail.fxml";
+    public static String searchDonnor = "searchingDonor.fxml";
     public static void MenuSwitch(ActionEvent event, String fxmlName, String title) throws IOException {
         System.out.println("Switching menu to " + fxmlName);
         Node CallingButton = (Node) event.getSource();
