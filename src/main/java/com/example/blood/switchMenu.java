@@ -9,48 +9,25 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class switchMenu {
-    public static void RegisterMenu(ActionEvent event) throws IOException {
+    public static String registerMenu = "Register.fxml";
+    public static String forgotPasswordMenu = "ForgotPassword.fxml";
+    public static String loginMenu = "Login.fxml";
+    public static String mainMenu = "MainMenu.fxml";
+    public static String EnterOTP = "EnterOTP.fxml";
+    public static String UpdatePassword = "UpdatePassword.fxml";
+    public static String firstForm = "FirstForm.fxml";
+    public static void MenuSwitch(ActionEvent event, String fxmlName, String title) throws IOException {
+        System.out.println("Switching menu to " + fxmlName);
         Node CallingButton = (Node) event.getSource();
         Stage mystage = (Stage) CallingButton.getScene().getWindow();
         mystage.setResizable(false);
-        FXMLLoader fxmlLoader = new FXMLLoader(BloodDonnor.class.getResource("Register.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(BloodDonnor.class.getResource(fxmlName));
         Scene scene = new Scene(fxmlLoader.load());
-        mystage.setTitle("Register");
+        mystage.setTitle(title);
         mystage.setScene(scene);
         mystage.centerOnScreen();
         mystage.show();
+        System.out.println("Switching menu complete " + fxmlName);
     }
-    public static void ForgotPasswordMenu(ActionEvent event) throws IOException {
-        Node CallingButton = (Node) event.getSource();
-        Stage mystage = (Stage) CallingButton.getScene().getWindow();
-        mystage.setResizable(false);
-        FXMLLoader fxmlLoader = new FXMLLoader(BloodDonnor.class.getResource("ForgotPassword.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        mystage.setTitle("OTP page");
-        mystage.setScene(scene);
-        mystage.centerOnScreen();
-        mystage.show();
-    }
-    public static void LoginMenu(ActionEvent event) throws IOException {
-        Node CallingButton = (Node) event.getSource();
-        Stage mystage = (Stage) CallingButton.getScene().getWindow();
-        mystage.setResizable(false);
-        FXMLLoader fxmlLoader = new FXMLLoader(BloodDonnor.class.getResource("Login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        mystage.setTitle("Login");
-        mystage.setScene(scene);
-        mystage.centerOnScreen();
-        mystage.show();
-    }
-    public static void MainMenu(ActionEvent event) throws IOException {
-        Node CallingButton = (Node) event.getSource();
-        Stage mystage = (Stage) CallingButton.getScene().getWindow();
-        mystage.setResizable(false);
-        FXMLLoader fxmlLoader = new FXMLLoader(BloodDonnor.class.getResource("MainMenu.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        mystage.setTitle("Main Menu");
-        mystage.setScene(scene);
-        mystage.centerOnScreen();
-        mystage.show();
-    }
+
 }

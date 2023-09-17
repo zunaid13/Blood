@@ -1,6 +1,9 @@
 package com.example.blood;
 
+import javafx.collections.ObservableList;
+
 import java.sql.*;
+import java.util.ArrayList;
 
 public class sql {
     private static String username="zun";
@@ -50,7 +53,7 @@ public class sql {
     }
     public static void addUser()
     {
-        String sqlQuery = "insert into blood values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlQuery = "insert into blood values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
             // step1 load the driver class
             Class.forName(FORNAME);
@@ -75,7 +78,7 @@ public class sql {
             pStmt.setString(10, null);
             pStmt.setString(11, null);
             pStmt.setString(12, null);
-
+            pStmt.setInt(13, -1);
             pStmt.executeUpdate();
 
             // step4 drop all the connections
@@ -176,6 +179,7 @@ public class sql {
                 mySettings.rh_factor = rs.getString("rh_factor");
                 mySettings.contact_no = rs.getString("contact_no");
                 mySettings.otp = EncryptDecrypt(mySettings.otp);
+                mySettings.rating = rs.getDouble("rating");
             }
             // step4 drop all the connections
             con.close();
@@ -188,6 +192,7 @@ public class sql {
         {
             throw new RuntimeException(e);
         }
+        System.out.println("Fetch complete");
     }
 
     public static void resetOTP()
@@ -248,6 +253,38 @@ public class sql {
         }
         return false;
     }
+    public static ObservableList<String> getDistricts(String division)
+    {
+        System.out.println("Getting districts");
+        ObservableList<String> ret = null;
+        String sqlQuery = "select district from location where division = ?";
+        try{
+            // step1 load the driver class
+            Class.forName(FORNAME);
+
+            // step2 create the connection object
+            Connection con = DriverManager.getConnection(url, username, password);
+
+            // step3 create the statement object
+            PreparedStatement pStmt = con.prepareStatement(sqlQuery);
+            pStmt.setString(1, division);
+            ResultSet rs = pStmt.executeQuery();
+            while(rs.next()) {
+                ret.add(rs.getString(1));
+            }
+            // step4 drop all the connections
+            con.close();
+            pStmt.close();
+            rs.close();
+        } catch (SQLException e)
+        {
+            System.out.println(" Error while connecting to database. Exception code : " + e);
+        } catch (ClassNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
+        return ret;
+    }
 }
 
 /*
@@ -263,7 +300,8 @@ create table blood(
     weight number,
     bloodgroup varchar2(5),
     rh_factor varchar2(4),
-    contact_no varchar2(15)
+    contact_no varchar2(15),
+    rating number
 );
 
 create table location(

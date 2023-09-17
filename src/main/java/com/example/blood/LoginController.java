@@ -38,7 +38,8 @@ public class LoginController {
         sql.fetchUser();
         if(mySettings.division != null)
             switchMenu.MenuSwitch(event, switchMenu.mainMenu, "Main Menu");
-        // else go to first login thingy
+        System.out.println("Entering first form");
+        switchMenu.MenuSwitch(event, switchMenu.firstForm, "Initial Setup");
     }
     @FXML protected void onRegisterBC(ActionEvent event) throws IOException {
         switchMenu.MenuSwitch(event, switchMenu.registerMenu, "Register");

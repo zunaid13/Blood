@@ -33,7 +33,7 @@ public class DonorDashboardController {
 
     @FXML
     protected void onBackBC(ActionEvent event) throws IOException {
-        switchMenu.MainMenu(event);
+        switchMenu.MenuSwitch(event, switchMenu.mainMenu, "com.example.blood.Main Menu");
     }
     @FXML
     protected void onUpdateBC(ActionEvent event) throws IOException {

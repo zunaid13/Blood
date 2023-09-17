@@ -29,7 +29,7 @@ public class DashboardController {
 
     @FXML
     protected void onBackBC(ActionEvent event) throws IOException{
-        switchMenu.MainMenu(event);
+        switchMenu.MenuSwitch(event, switchMenu.mainMenu, "com.example.blood.Main Menu");
     }
     @FXML
     protected void onSearchBC(ActionEvent event) throws  IOException{
