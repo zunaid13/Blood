@@ -4,22 +4,23 @@
 
 .label{
     -fx-font-family: "Lucida Console";
-    -fx-alignment: center;
+    /*-fx-background-color: #e3effd;*/
+    /*-fx-alignment: center;*/
 }
 
 #Verdict{
-    -fx-text-fill: white;
+    -fx-text-fill: lightgray;
 }
 
 .button{
     -fx-background-radius: 20;
-    -fx-background-color:  lightgray;
+    -fx-background-color:  #e3effd;
     -fx-pref-width: 200px;
     -fx-pref-height: 50px;
 }
 
 .button:hover{
-    -fx-background-color: white;
+    -fx-background-color: lightgray;
 }
 
 .password-field{
