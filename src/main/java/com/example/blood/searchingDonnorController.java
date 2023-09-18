@@ -32,15 +32,15 @@ public class searchingDonnorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ArrayList<userProfiler> others = sql.getOtherProfiles();
-        for(int i = 0 ; i < 10 ; i++)
+        for(int i = 0 ; i < others.size() ; i++)
         {
-            if(others.get(0).district == null) continue;
-            System.out.println("Obtained email: " + others.get(0).email);
+            if(others.get(i).district == null) continue;
+            System.out.println("Obtained email: " + others.get(i).email);
             FXMLLoader loader = new FXMLLoader(BloodDonnor.class.getResource(switchMenu.donnorThumb));
             try{
                 Parent root = loader.load();
                 donnorThumbnailController dtc = loader.getController();
-                dtc.setup(others.get(0));
+                dtc.setup(others.get(i));
                 int x =  1, y =  1+i;
                 gridPain.add(root, x, y);
             } catch (IOException e) {

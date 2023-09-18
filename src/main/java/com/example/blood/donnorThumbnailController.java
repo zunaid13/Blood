@@ -19,7 +19,9 @@ public class donnorThumbnailController {
         bloodGrp.setText(up.bloodgroup + " " + up.rh_factor);
         age.setText(String.valueOf(Period.between(up.DOB, LocalDate.now()).getYears()));
         Location.setText(up.division + ", " + up.district);
-        Rating.setText(String.valueOf(up.rating));
+        if(up.rating < 0)
+            Rating.setText("Unrated");
+        else Rating.setText(String.valueOf(up.rating));
         System.out.println("THUMB AREA : " + up.fullname);
 
     }
