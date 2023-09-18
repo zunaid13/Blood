@@ -25,35 +25,49 @@
          <right>
             <AnchorPane prefHeight="720.0" prefWidth="670.0" style="-fx-background-color: D93A52;" stylesheets="@MenuStyle.css" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="verdict12" layoutX="79.0" layoutY="65.0" prefHeight="54.0" prefWidth="568.0" text="Main Menu">
+                  <Label fx:id="verdict12" alignment="CENTER" layoutX="132.0" layoutY="81.0" prefHeight="54.0" prefWidth="406.0" text="Home Screen" textAlignment="CENTER">
                      <font>
                         <Font size="35.0" />
                      </font>
                   </Label>
-                  <Button layoutX="263.0" layoutY="222.0" mnemonicParsing="false" onAction="#onSearchDonnorBC" text="Search Donors" />
-                  <Button layoutX="263.0" layoutY="297.0" mnemonicParsing="false" onAction="#onViewProfileBC" text="View Profile" />
-                  <Button layoutX="263.0" layoutY="372.0" mnemonicParsing="false" onAction="#onLearnBC" text="Learn" />
-                  <Button layoutX="263.0" layoutY="447.0" mnemonicParsing="false" onAction="#onLogoutBC" text="Logout" />
-                  <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="188.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
+                  <Button layoutX="163.0" layoutY="280.0" mnemonicParsing="false" onAction="#onSearchDonnorBC" text="Search Donors" />
+                  <Button layoutX="163.0" layoutY="355.0" mnemonicParsing="false" onAction="#onViewProfileBC" text="View Profile" />
+                  <Button layoutX="163.0" layoutY="430.0" mnemonicParsing="false" onAction="#onLearnBC" text="Learn" />
+                  <Button layoutX="163.0" layoutY="505.0" mnemonicParsing="false" onAction="#onLogoutBC" text="Logout" />
+                  <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="88.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@profile%20icon.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="188.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="88.0" layoutY="273.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@search%20png.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="65.0" fitWidth="60.0" layoutX="188.0" layoutY="365.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="65.0" fitWidth="60.0" layoutX="88.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@learn.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="65.0" fitWidth="50.0" layoutX="196.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="65.0" fitWidth="50.0" layoutX="96.0" layoutY="505.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@logout.png" />
                      </image>
                   </ImageView>
+                  <Label layoutX="381.0" layoutY="289.0" prefHeight="31.0" prefWidth="265.0" text="Search for Available Donors based on your needs" wrapText="true" />
+                  <Label layoutX="381.0" layoutY="364.0" prefHeight="31.0" prefWidth="265.0" text="View and Edit your Profile" wrapText="true" />
+                  <Label layoutX="381.0" layoutY="514.0" prefHeight="31.0" prefWidth="265.0" text="Log out of your profile" wrapText="true" />
+                  <Label layoutX="381.0" layoutY="439.0" prefHeight="31.0" prefWidth="265.0" text="Learn More About Blood Donation" wrapText="true" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="29.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@home%20icon.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="Dt" layoutX="15.0" layoutY="687.0" prefHeight="18.0" prefWidth="354.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </right>
