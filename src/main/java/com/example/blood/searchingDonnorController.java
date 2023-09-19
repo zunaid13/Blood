@@ -1,5 +1,6 @@
 package com.example.blood;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -47,5 +48,10 @@ public class searchingDonnorController implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    void onBackBC(ActionEvent event) throws IOException {
+        switchMenu.MenuSwitch(event, switchMenu.mainMenu,"Main Menu");
     }
 }

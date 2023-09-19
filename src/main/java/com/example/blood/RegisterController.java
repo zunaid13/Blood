@@ -69,12 +69,12 @@ public class RegisterController {
             specialLab.setText("Password must have special characters");
         } else specialLab.setText("Password has special characters");
         /////
-        if(small && capital && number && special != true) return;
-        if(mySettings.passwordCheck(mySettings.password) != null)
-        {
-            verdict.setText(mySettings.passwordCheck(mySettings.password));
-            return;
-        }
+        if((small && capital && number && special) != true) return;
+//        if(mySettings.passwordCheck(mySettings.password) != null)
+//        {
+//            verdict.setText(mySettings.passwordCheck(mySettings.password));
+//            return;
+//        }
 
         if(!check.equals(mySettings.password))
         {
@@ -88,7 +88,7 @@ public class RegisterController {
         }
         if(Period.between(mySettings.DOB, LocalDate.now()).getYears() < 18)
         {
-            verdict.setText("You must be atleast 18 years old");
+            verdict.setText("You must be at least 18 years old");
             return;
         }
         if(!sql.CheckEmailAvailability())

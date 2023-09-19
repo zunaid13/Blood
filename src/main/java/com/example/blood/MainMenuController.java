@@ -30,7 +30,7 @@ public class MainMenuController implements Initializable {
         switchMenu.MenuSwitch(event, switchMenu.loginMenu, "Login");
     }
     @FXML protected void onLearnBC(ActionEvent event) throws IOException {
-        mybrowser.Goto(mybrowser.google);
+        mybrowser.Goto(mybrowser.info);
     }
     @FXML protected void onSearchDonnorBC(ActionEvent event) throws IOException {
         switchMenu.MenuSwitch(event, switchMenu.searchDonnor, "Searching for Donors");

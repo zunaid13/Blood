@@ -65,7 +65,7 @@
                   </ImageView>
                   <Label fx:id="Dt" layoutX="15.0" layoutY="687.0" prefHeight="18.0" prefWidth="354.0">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="18.0" />
                      </font>
                   </Label>
                </children>
